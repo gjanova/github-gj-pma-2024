@@ -25,7 +25,7 @@
             android:layout_marginRight="10dp"/>
 
         <EditText
-            android:id="@+id/etName"
+            android:id="@+id/etLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -37,7 +37,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
 
     <EditText
         android:id="@+id/etPlace"
@@ -53,7 +54,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
 
         <EditText
             android:id="@+id/etVek"
@@ -65,24 +67,31 @@
             android:layout_weight="1"/>
 
          <Button
+             android:id="@+id/BtnSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
              android:layout_weight="1"
              android:textColor="@color/white"
-             android:text="Odeslat"
+             android:text="@string/btn_send"
              android:layout_marginRight="20dp"
-             android:layout_marginLeft="20dp"/>
+             android:layout_marginLeft="20dp"
+             android:backgroundTint="@color/ruzovo_hneda"
+             android:textSize="15sp"/>
         <Button
+            android:id="@+id/BtnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:text="Smazat" />
+            android:text="@string/btn_delete"
+            android:backgroundTint="@color/svetle_ruzova"
+            android:textSize="15sp"/>
 
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Informace"

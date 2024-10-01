@@ -26,11 +26,18 @@ class MainActivity : AppCompatActivity() {
         val btnSend = findViewById<Button>(R.id.btnSend)
         val tvVysledek = findViewById<TextView>(R.id.tvVysledek)
 
-                btnSend.setOnClickListener {
+        btnSend.setOnClickListener {
             val vysledek = etVysledek.text.toString()
+
+            // Kontrola správnosti výsledku
+            if (vysledek == "20") {
+                tvVysledek.text = "Ano, výsledek je správně."
+            } else {
+                tvVysledek.text = "Ne, výsledek má být 20."
+            }
         }
-        val formattedText = "Výsledek je 20."
-        tvVysledek.text = formattedText
 
     }
-}
+
+
+    }

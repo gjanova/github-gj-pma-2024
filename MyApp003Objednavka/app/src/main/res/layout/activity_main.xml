@@ -1,19 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:padding="20dp"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tvOtazka"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Denní nabídka"
+        android:textSize="40dp"
+        android:textAlignment="center"/>
+
+    <RadioGroup
+        android:id="@+id/rgTestoviny"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:paddingTop="10dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RadioButton
+            android:id="@+id/rbTestoviny1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Krémové rajčatové těstoviny"
+            android:checked="true"
+            android:textSize="13dp"/>
+        <RadioButton
+            android:id="@+id/rbTestoviny2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mac and Cheese"
+            android:textSize="13dp"/>
+        <RadioButton
+            android:id="@+id/rbTestoviny3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zapečené těstoviny se smetanou a kukuřicí"
+            android:textSize="13dp"/>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chcete si něco přidat?"
+        android:textSize="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <CheckBox
+        android:id="@+id/cbPolevka"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="s polévkou dle denní nabídky"
+        android:textSize="13dp"/>
+    <CheckBox
+        android:id="@+id/cbDezert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="s dezertem dle denní nabídky"
+        android:textSize="13dp"/>
+    <CheckBox
+        android:id="@+id/cbPiti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="s pitím (voda, džus, cola)"
+        android:textSize="13dp"/>
+
+    <Button
+        android:id="@+id/btnObjednat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Objednat"
+        android:paddingTop="10dp"/>
+
+    <TextView
+        android:id="@+id/tvSouhrn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/ivTestoviny1"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/Kremove_rajcatove_testoviny"/>
+
+</LinearLayout>

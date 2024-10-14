@@ -2,33 +2,25 @@ package com.example.myapp005moreactivities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.myapp006moreactivities.SecondActivity
+import com.example.myapp005moreactivities.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        //enableEdgeToEdge()
+        setSupportActionBar(binding.toolbar)
 
-        setContentView(R.layout.activity_main)
-
-        val btnSecond = findViewById<Button>(R.id.btnSecond)
-        val etNickname = findViewById<EditText>(R.id.etNickname)
-
-        btnSecond.setOnClickListener {
-            val nickname = etNickname.text.toString() // získáme text z edit text pole
-            val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("NICK_NAME", nickname)
+        binding.buttonSend.setOnClickListener {
+            val data = binding.editTextData.text.toString()
+            val intent = Intent(this, SecondActivity::class.java).apply {
+                putExtra("EXTRA_DATA", data)
+            }
             startActivity(intent)
         }
-
-
-
     }
 }

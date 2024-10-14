@@ -1,30 +1,28 @@
-package com.example.myapp006moreactivities
+package com.example.myapp005moreactivities
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.myapp005moreactivities.R
+import com.example.myapp005moreactivities.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySecondBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //enableEdgeToEdge()
-        setContentView(R.layout.activity_second)
+        binding = ActivitySecondBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val twInfo = findViewById<TextView>(R.id.twInfo)
+        setSupportActionBar(binding.toolbar)
 
-        // Načtení dat z intentu
-        val nickname = intent.getStringExtra("NICK_NAME")
-        twInfo.text = "Data z první aktivity. Jméno: $nickname"
+        val receivedData = intent.getStringExtra("EXTRA_DATA")
+        binding.textViewReceived.text = receivedData
 
-        val btnBack = findViewById<Button>(R.id.btnBack)
-        btnBack.setOnClickListener {
-            finish()
+        binding.buttonNext.setOnClickListener {
+            val intent = Intent(this, ThirdActivity::class.java).apply {
+                putExtra("EXTRA_DATA", receivedData)
+            }
+            startActivity(intent)
         }
-
     }
 }

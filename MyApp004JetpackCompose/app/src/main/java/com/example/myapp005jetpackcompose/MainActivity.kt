@@ -120,6 +120,9 @@ fun ComposePerson() {
                         age = ""
                         place = ""
                         resultText = ""
+                        state = ""
+                        psc = ""
+
                     },
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors(

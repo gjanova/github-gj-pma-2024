@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myapp004jetpackcompose"
+    namespace = "com.example.myapp005jetpackcompose"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.myapp004jetpackcompose"
+        applicationId = "com.example.myapp005jetpackcompose"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

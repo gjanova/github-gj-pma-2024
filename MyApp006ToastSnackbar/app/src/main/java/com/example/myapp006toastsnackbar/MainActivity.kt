@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myapp006toastsnackbar.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
@@ -22,8 +23,14 @@ class MainActivity : AppCompatActivity() {
         binding.btnShowToast.setOnClickListener{
             val toast = Toast.makeText(this, "Nazdar - mám hlad", Toast.LENGTH_LONG)
 
-            //test
+            toast.show()
 
+        }
+
+        // Využití bindingu k tlačítku
+        binding.btnShowSnackbar.setOnClickListener {
+            // Vytvoření a zobrazení Snackbaru
+            val snackbar = Snackbar.make(it, "Toto je Snackbar!", Snackbar.LENGTH_LONG).show()
         }
 
     }

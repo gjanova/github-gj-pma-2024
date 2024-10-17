@@ -1,17 +1,15 @@
 package com.example.myapp006toastsnackbar
 
-import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.myapp006toastsnackbar.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,19 +17,28 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Nastevení akce pro tlačítko
-        binding.btnShowToast.setOnClickListener{
-            val toast = Toast.makeText(this, "Nazdar - mám hlad", Toast.LENGTH_LONG)
-
-            toast.show()
-
+        // Nastavení akce pro tlačítko Toast
+        binding.btnShowToast.setOnClickListener {
+            Toast.makeText(this, "Nazdar - mám hlad", Toast.LENGTH_LONG).show()
         }
 
-        // Využití bindingu k tlačítku
+        // Nastavení akce pro tlačítko Snackbar
         binding.btnShowSnackbar.setOnClickListener {
-            // Vytvoření a zobrazení Snackbaru
-            val snackbar = Snackbar.make(it, "Toto je Snackbar!", Snackbar.LENGTH_LONG).show()
-        }
+            // Vytvoření Snackbaru
+            val snackbar = Snackbar.make(it, "Toto je Snackbar!", Snackbar.LENGTH_LONG)
 
+            // Nastavení délky zobrazení
+            snackbar.setDuration(7000)
+            snackbar.setBackgroundTint((Color.parseColor("#FFFFFF")))
+
+
+            // Přidání akce
+            snackbar.setAction("Zavřít") {
+                Toast.makeText(this, "Zavírám Snackbar", Toast.LENGTH_LONG).show()
+            }
+
+            // Zobrazení Snackbaru
+            snackbar.show()
+        }
     }
 }

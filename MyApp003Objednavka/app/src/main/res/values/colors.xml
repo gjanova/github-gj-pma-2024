@@ -5,4 +5,6 @@
     <color name="oranzova">#ff5733</color>
     <color name="svetle_zluta">#FAE9D1</color>
     <color name="zluta">#ffc13d</color>
+    <color name="primary">#ff5733</color>
+
 </resources>

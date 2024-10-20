@@ -85,12 +85,13 @@
     <TextView
         android:id="@+id/tvSouhrn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Zde se zobrazí souhrn objednávky"/>
 
     <ImageView
-        android:id="@+id/ivTestoviny1"
+        android:id="@+id/ivTestoviny"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:src="@drawable/Kremove_rajcatove_testoviny"/>
+        android:src="@drawable/kremove_rajcatove_testoviny"/>
 
 </LinearLayout>

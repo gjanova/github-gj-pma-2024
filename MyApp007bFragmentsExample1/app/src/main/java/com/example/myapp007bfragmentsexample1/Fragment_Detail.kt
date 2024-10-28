@@ -16,11 +16,10 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment__deatil, container, false)
+        val view = inflater.inflate(R.layout.fragment_detail, container, false)
         textViewPasta = view.findViewById(R.id.textViewPasta)
         textViewSauce = view.findViewById(R.id.textViewSauce)
 
-        // Načtení argumentů a aktualizace textových polí
         arguments?.let {
             val pasta = it.getString("pasta")
             val sauce = it.getString("sauce")
@@ -30,8 +29,7 @@ class DetailFragment : Fragment() {
         return view
     }
 
-    // Metoda pro aktualizaci zobrazení detailů
-    fun updateDetails(title: String, author: String) {
+    fun updateDetails(pasta: String, sauce: String) {
         textViewPasta.text = pasta
         textViewSauce.text = sauce
     }

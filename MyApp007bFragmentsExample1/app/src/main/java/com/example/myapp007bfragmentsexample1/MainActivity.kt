@@ -1,10 +1,8 @@
 package com.example.myapp007bfragmentsexample1
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.myapp007bfragmentsexample1.PastaFragment  // Ujistěte se, že je import správný
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,27 +10,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Přidáme ListFragment, pokud ještě neexistuje
+        // Přidání PastaFragment do layoutu
         if (savedInstanceState == null) {
-            val listFragment = PastaFragment()
+            val pastaFragment = PastaFragment()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_list, listFragment)
+                .replace(R.id.fragment_container_list, pastaFragment)
                 .commit()
         }
     }
 
-    // Voláno při výběru knihy
-    fun onBookSelected(title: String, author: String) {
-        // Vytvoření nového DetailFragment a nastavení argumentů
+    // Voláno při výběru položky
+    fun onBookSelected(pasta: String, sauce: String) {
         val detailFragment = DetailFragment()
-
         val bundle = Bundle().apply {
-            putString("title", title)
-            putString("author", author)
+            putString("pasta", pasta)
+            putString("sauce", sauce)
         }
         detailFragment.arguments = bundle
 
-        // Nahradíme starý fragment novým a commitneme transakci
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container_detail, detailFragment)
             .commit()

@@ -16,7 +16,7 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment__detail, container, false)
         textViewPasta = view.findViewById(R.id.textViewPasta)
         textViewSauce = view.findViewById(R.id.textViewSauce)
 

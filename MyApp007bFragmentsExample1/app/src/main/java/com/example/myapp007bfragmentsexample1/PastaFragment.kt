@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 
-class ListFragment : Fragment() {
+class PastaFragment : Fragment() {
 
     private lateinit var listView: ListView
     private val pasta = listOf(

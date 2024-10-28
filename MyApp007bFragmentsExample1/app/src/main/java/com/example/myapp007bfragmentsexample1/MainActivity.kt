@@ -20,11 +20,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Voláno při výběru položky
-    fun onBookSelected(pasta: String, sauce: String) {
+    fun onBookSelected(title: String, sauce: String, imageResId: Int) {
         val detailFragment = DetailFragment()
         val bundle = Bundle().apply {
-            putString("pasta", pasta)
+            putString("pasta", title)
             putString("sauce", sauce)
+            putInt("imageResId", imageResId)
         }
         detailFragment.arguments = bundle
 

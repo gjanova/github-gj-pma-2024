@@ -12,9 +12,9 @@ class PastaFragment : Fragment() {
 
     private lateinit var listView: ListView
     private val pasta = listOf(
-        "Pasta 1" to "Sauce 1",
-        "Pasta 2" to "Sauce 2",
-        "Pasta 3" to "Sauce 3"
+        Triple("Lemon Pasta", "Lemon Sauce", R.drawable.lemon_pasta),
+        Triple("Pasta Primavera", "Primavera Sauce", R.drawable.pasta_primavera),
+        Triple("Chicken and Bacon Pasta", "Creamy Bacon Sauce", R.drawable.chicken_and_bacon_pasta)
     )
 
     override fun onCreateView(

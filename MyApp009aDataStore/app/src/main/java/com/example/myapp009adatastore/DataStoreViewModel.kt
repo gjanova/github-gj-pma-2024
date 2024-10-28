@@ -25,10 +25,11 @@ class DataStoreViewModel(application: Application) : ViewModel() {
         }
     }
 
-    fun readData(): Flow<Pair<String?, String?>> {
+    fun readData(): Flow<Pair<String, String>> {
         return dataStore.data.map { preferences ->
-            val name = preferences[nameKey]
-            val age = preferences[ageKey]
+            // Pokud klíče neexistují, vrátí se výchozí hodnoty
+            val name = preferences[nameKey] ?: "Neznámé"
+            val age = preferences[ageKey] ?: "Neznámý"
             Pair(name, age)
         }
     }

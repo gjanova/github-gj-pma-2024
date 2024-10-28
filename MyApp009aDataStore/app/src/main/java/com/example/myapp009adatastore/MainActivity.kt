@@ -45,9 +45,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadData() {
         lifecycleScope.launch {
-            val userData = dataStoreViewModel.readData().first()
-            textViewUsername.text = "Jméno: ${userData.first}"
-            textViewAge.text = "Věk: ${userData.second}"
+            try {
+                val userData = dataStoreViewModel.readData().first()
+                val username = userData.first ?: "Neznámé"
+                val age = userData.second ?: "Neznámý"
+                textViewUsername.text = "Jméno: $username"
+                textViewAge.text = "Věk: $age"
+            } catch (e: Exception) {
+                e.printStackTrace() // Můžeš také logovat do logcat nebo zobrazit toast
+            }
         }
     }
+
 }
+
+

@@ -1,4 +1,4 @@
-com.example.myapp010aimagetoapp
+package com.example.myapp010aimagetoapp
 
 import android.net.Uri
 import android.os.Bundle

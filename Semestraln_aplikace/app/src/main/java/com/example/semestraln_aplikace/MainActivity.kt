@@ -1,47 +1,40 @@
 package com.example.semestraln_aplikace
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.semestraln_aplikace.ui.theme.Semestralní_aplikaceTheme
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.semestraln_aplikace.viewmodel.WaterIntakeViewModel
+import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private val waterIntakeViewModel: WaterIntakeViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Semestralní_aplikaceTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        val amountEditText: EditText = findViewById(R.id.amountEditText)
+        val addButton: Button = findViewById(R.id.addButton)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        addButton.setOnClickListener {
+            val amount = amountEditText.text.toString().toInt()
+            waterIntakeViewModel.addWaterIntake(amount)
+            Toast.makeText(this, "Water intake added", Toast.LENGTH_SHORT).show()
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Semestralní_aplikaceTheme {
-        Greeting("Android")
+        lifecycleScope.launch {
+            val allIntakes = waterIntakeViewModel.getAllIntakes()
+            recyclerView.adapter = WaterIntakeAdapter(allIntakes)
+        }
     }
 }

@@ -32,5 +32,23 @@
             android:textSize="14sp"
             android:layout_marginTop="4dp" />
 
+        <!-- Ikonka pro editaci -->
+        <ImageView
+            android:id="@+id/icon_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/change"
+            android:contentDescription="Upravit poznámku" />
+
+        <!-- Ikonka pro mazání -->
+        <ImageView
+            android:id="@+id/icon_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/delete"
+            android:contentDescription="Smazat poznámku" />
+
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.myapp012amynotehub"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.myapp012amynotehub"
@@ -60,4 +60,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

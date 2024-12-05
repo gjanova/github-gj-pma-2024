@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.myapp015asharedtasklist"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.myapp015asharedtasklist"
@@ -33,7 +33,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
+
+
 
 dependencies {
 

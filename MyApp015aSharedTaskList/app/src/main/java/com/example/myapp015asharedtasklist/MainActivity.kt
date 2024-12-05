@@ -113,8 +113,8 @@ class MainActivity : AppCompatActivity() {
         // Uložíme úkol do Firestore
         firestore.collection("tasks").document(newTask.id).set(newTask)
             .addOnSuccessListener {
-                tasks.add(newTask)
-                taskAdapter.notifyItemInserted(tasks.size - 1)
+                //tasks.add(newTask)
+               // taskAdapter.notifyItemInserted(tasks.size - 1)
                 println("Task added to Firestore: $name")
             }
             .addOnFailureListener { e ->

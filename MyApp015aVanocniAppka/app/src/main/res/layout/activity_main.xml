@@ -1,19 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/christmas_background"
+    android:padding="16dp">
 
+    <!-- Nadpis -->
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Vánoční odpočítávání"
+        android:textSize="32sp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="32dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Tlačítka pro Vánoce a Silvestr -->
+    <Button
+        android:id="@+id/btnChristmas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vánoce"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnNewYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Silvestr"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp" />
+
+    <!-- TextView pro zobrazení odpočtu -->
+    <TextView
+        android:id="@+id/tvCountdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zbývající čas: 00:00:00"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="32dp" />
+</LinearLayout>

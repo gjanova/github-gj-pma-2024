@@ -3,11 +3,12 @@ plugins {
     alias(libs.plugins.kotlin.android)
     kotlin("kapt") version "2.0.21"
     alias(libs.plugins.compose.compiler)
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.example.semestraln_aplikace"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.semestraln_aplikace"
@@ -69,10 +70,22 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    kapt("groupId:artifactId:version")
+    // Room dependencies
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
 
-    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // Kotlin Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+
+    // Add Firebase products you want to use
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 }

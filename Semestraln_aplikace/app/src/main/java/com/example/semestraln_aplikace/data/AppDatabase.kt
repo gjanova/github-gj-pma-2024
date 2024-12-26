@@ -1,6 +1,7 @@
 package com.example.semestraln_aplikace.data
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -21,6 +22,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "smart_hydrate_database"
                 ).build()
+                Log.d("AppDatabase", "Database created")
                 INSTANCE = instance
                 instance
             }

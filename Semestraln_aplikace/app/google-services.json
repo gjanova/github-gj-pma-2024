@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "198954460514",
+    "project_id": "semestralniprace-c6432",
+    "storage_bucket": "semestralniprace-c6432.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198954460514:android:bf66b73023fb8ce536383b",
+        "android_client_info": {
+          "package_name": "com.example.semestraln_aplikace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUR1hSlVnSFjxL1g5KzuqzI8c9rBUNcu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

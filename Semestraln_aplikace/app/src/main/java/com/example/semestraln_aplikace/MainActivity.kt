@@ -100,6 +100,27 @@ fun setReminder(context: Context, interval: Long) {
 }
 
 @Composable
+fun StatisticsScreen(waterIntakeViewModel: WaterIntakeViewModel) {
+    val dailyIntake = waterIntakeViewModel.getDailyIntake()
+    LazyColumn(modifier = Modifier.padding(16.dp)) {
+        items(dailyIntake.keys.toList()) { date ->
+            val amount = dailyIntake[date]
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
+                elevation = CardDefaults.cardElevation(4.dp)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(text = date, style = MaterialTheme.typography.titleLarge)
+                    Text(text = "$amount ml", style = MaterialTheme.typography.bodyLarge)
+                }
+            }
+        }
+    }
+}
+
+@Composable
 fun MainContent(waterIntakeViewModel: WaterIntakeViewModel) {
     Column(
         modifier = Modifier
@@ -110,12 +131,15 @@ fun MainContent(waterIntakeViewModel: WaterIntakeViewModel) {
         var reminderInterval by remember { mutableStateOf(60L) }
         val context = LocalContext.current
         val auth = FirebaseAuth.getInstance()
+        var showStatistics by remember { mutableStateOf(false) }
 
         OutlinedTextField(
             value = amount,
             onValueChange = { amount = it },
             label = { Text("Množství (ml)") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
         )
 
         Button(
@@ -131,7 +155,7 @@ fun MainContent(waterIntakeViewModel: WaterIntakeViewModel) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp)
+                .padding(vertical = 8.dp)
         ) {
             Text("Přidat záznam")
         }
@@ -140,7 +164,9 @@ fun MainContent(waterIntakeViewModel: WaterIntakeViewModel) {
             value = reminderInterval.toString(),
             onValueChange = { reminderInterval = it.toLongOrNull() ?: 60L },
             label = { Text("Interval připomenutí (minuty)") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
         )
 
         Button(
@@ -150,7 +176,7 @@ fun MainContent(waterIntakeViewModel: WaterIntakeViewModel) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp)
+                .padding(vertical = 8.dp)
         ) {
             Text("Nastavit připomenutí")
         }
@@ -164,16 +190,43 @@ fun MainContent(waterIntakeViewModel: WaterIntakeViewModel) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp)
+                .padding(vertical = 8.dp)
         ) {
             Text("Odhlásit se")
         }
 
-        val allIntakes by waterIntakeViewModel.getAllIntakes().collectAsState(initial = emptyList())
+        Button(
+            onClick = { showStatistics = !showStatistics },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        ) {
+            Text(if (showStatistics) "Zavřít statistiky" else "Zobrazit statistiky")
+        }
 
-        LazyColumn(modifier = Modifier.padding(top = 16.dp)) {
-            items(allIntakes) { intake ->
-                Text(text = "${intake.amount} ml - ${formatTimestamp(intake.timestamp)}")
+        if (showStatistics) {
+            StatisticsScreen(waterIntakeViewModel)
+        }
+
+        Text(
+            text = "Záznamy o pití vody",
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.padding(vertical = 16.dp)
+        )
+
+        LazyColumn(modifier = Modifier.padding(top = 8.dp)) {
+            items(waterIntakeViewModel.allIntakes) { intake ->
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                    elevation = CardDefaults.cardElevation(4.dp)
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(text = "${intake.amount} ml", style = MaterialTheme.typography.titleLarge)
+                        Text(text = formatTimestamp(intake.timestamp), style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
             }
         }
     }

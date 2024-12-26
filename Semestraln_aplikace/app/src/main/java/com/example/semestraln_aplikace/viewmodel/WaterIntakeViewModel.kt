@@ -1,55 +1,60 @@
 package com.example.semestraln_aplikace.viewmodel
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.semestraln_aplikace.data.WaterIntake
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class WaterIntakeViewModel : ViewModel() {
+    private val db = FirebaseFirestore.getInstance()
 
-    private val _intakes = MutableStateFlow<List<WaterIntake>>(emptyList())
-    val intakes: StateFlow<List<WaterIntake>> = _intakes
+    val allIntakes = mutableStateListOf<WaterIntake>()
 
     init {
         fetchWaterIntakesFromFirestore()
     }
 
     fun addWaterIntake(amount: Int) {
-        viewModelScope.launch {
-            val db = FirebaseFirestore.getInstance()
-            val intake = hashMapOf(
-                "amount" to amount,
-                "timestamp" to System.currentTimeMillis()
-            )
-
-            db.collection("water_intakes")
-                .add(intake)
-                .addOnSuccessListener {
-                    fetchWaterIntakesFromFirestore()
-                }
-                .addOnFailureListener {
-                    // Handle failure
-                }
-        }
+        val newIntake = WaterIntake(amount = amount, timestamp = System.currentTimeMillis())
+        db.collection("water_intakes").add(newIntake)
+            .addOnSuccessListener { documentReference ->
+                newIntake.id = documentReference.id
+                allIntakes.add(newIntake)
+                allIntakes.sortByDescending { it.timestamp }
+            }
     }
 
     private fun fetchWaterIntakesFromFirestore() {
-        val db = FirebaseFirestore.getInstance()
         db.collection("water_intakes")
             .get()
-            .addOnSuccessListener { querySnapshot ->
-                val intakes = querySnapshot.toObjects(WaterIntake::class.java)
-                _intakes.value = intakes
+            .addOnSuccessListener { result ->
+                allIntakes.clear()
+                for (document in result) {
+                    val intake = WaterIntake(
+                        id = document.id,
+                        amount = document.getLong("amount")?.toInt() ?: 0,
+                        timestamp = document.getLong("timestamp") ?: 0L
+                    )
+                    allIntakes.add(intake)
+                }
+                allIntakes.sortByDescending { it.timestamp }
             }
-            .addOnFailureListener {
-                // Handle failure
+            .addOnFailureListener { exception ->
+                println("Error getting documents: $exception")
             }
     }
 
-    fun getAllIntakes(): StateFlow<List<WaterIntake>> {
-        return intakes
+    fun getDailyIntake(): Map<String, Int> {
+        val dailyIntake = mutableMapOf<String, Int>()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+        for (intake in allIntakes) {
+            val date = dateFormat.format(Date(intake.timestamp))
+            dailyIntake[date] = (dailyIntake[date] ?: 0) + intake.amount
+        }
+
+        return dailyIntake
     }
 }

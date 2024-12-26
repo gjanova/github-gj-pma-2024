@@ -5,6 +5,13 @@
     <!-- Povolení pro odesílání notifikací -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:targetApi="33"/>
 
+    <!-- Povolení pro Google Play Services -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID_COLLECTION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

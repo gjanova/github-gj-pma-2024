@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "water_intake")
 data class WaterIntake(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey var id: String = "",
     val amount: Int = 0,
     val timestamp: Long = 0L
 )
